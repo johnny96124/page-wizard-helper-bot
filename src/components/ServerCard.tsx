@@ -29,6 +29,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
           <div className="flex-1">
             <h2 className="text-xl font-bold text-gray-900">{server.name}</h2>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
+              <p className="text-gray-700 font-medium text-xs mr-1">Category:</p>
               <span className={`text-xs font-medium px-2 py-1 rounded ${
                 server.type === 'STDIO' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
               }`}>
@@ -87,6 +88,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 </DialogTitle>
                 <DialogDescription>
                   <div className="flex items-center gap-2 mt-2 flex-wrap">
+                    <span className="text-xs font-medium text-gray-700 mr-1">Category:</span>
                     <span className={`text-xs font-medium px-2 py-1 rounded inline-block ${
                       server.type === 'STDIO' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
                     }`}>
@@ -106,7 +108,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <h3 className="font-medium text-sm text-gray-500 mb-1">Description</h3>
                 <p className="text-gray-800">{server.description}</p>
                 
-                <div className="mt-6 flex items-start gap-6">
+                <div className="mt-6 grid grid-cols-2 gap-6">
                   <div>
                     <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
                     <p className="text-gray-800">{server.author}</p>
