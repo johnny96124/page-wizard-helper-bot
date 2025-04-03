@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Info, Server } from 'lucide-react';
+import { Info, Server, Check, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServerType } from '@/data/servers';
-import { StarRating } from '@/components/StarRating';
+import { Badge } from '@/components/ui/badge';
 import {
   Dialog,
   DialogContent,
@@ -18,37 +18,64 @@ interface ServerCardProps {
 }
 
 const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
+  // Limit tags to display max 3
+  const displayTags = server.tags.slice(0, 3);
+  const hasMoreTags = server.tags.length > 3;
+  
   return (
-    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow transition-shadow duration-200">
-      <div className="p-6">
+    <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow transition-shadow duration-200 h-full flex flex-col">
+      <div className="p-6 flex flex-col h-full">
         <div className="flex items-center gap-4 mb-4">
           <div className="flex-shrink-0">
             {server.icon}
           </div>
-          <div>
+          <div className="flex-1">
             <h2 className="text-xl font-bold text-gray-900">{server.name}</h2>
-            <div className="flex items-center gap-2 mt-1">
+            <div className="flex items-center gap-2 mt-1 flex-wrap">
               <span className={`text-xs font-medium px-2 py-1 rounded ${
                 server.type === 'STDIO' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
               }`}>
                 {server.type}
               </span>
               <span className="text-gray-500 text-sm">v{server.version}</span>
+              {server.isOfficial ? (
+                <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-green-100 text-green-800">
+                  <Check className="h-3 w-3 mr-1" />
+                  Official
+                </span>
+              ) : (
+                <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800">
+                  <Tag className="h-3 w-3 mr-1" />
+                  Community
+                </span>
+              )}
             </div>
           </div>
         </div>
         
-        <p className="text-gray-600 mb-6">{server.description}</p>
+        <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{server.description}</p>
+        
+        <div className="mb-4">
+          <p className="text-gray-700 font-medium mb-2">Author</p>
+          <p className="text-gray-600">{server.author}</p>
+        </div>
         
         <div className="mb-6">
-          <p className="text-gray-700 font-medium mb-1">Author</p>
-          <div className="flex items-center justify-between">
-            <p className="text-gray-600">{server.author}</p>
-            <StarRating rating={server.rating} />
+          <div className="flex flex-wrap gap-2">
+            {displayTags.map((tag, index) => (
+              <Badge key={index} variant="outline" className="bg-gray-100">
+                {tag}
+              </Badge>
+            ))}
+            {hasMoreTags && (
+              <Badge variant="outline" className="bg-gray-100">
+                +{server.tags.length - 3}
+              </Badge>
+            )}
           </div>
         </div>
         
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <Dialog>
             <DialogTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
@@ -63,12 +90,25 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                   <span>{server.name}</span>
                 </DialogTitle>
                 <DialogDescription>
-                  <span className={`text-xs font-medium px-2 py-1 rounded inline-block mt-2 ${
-                    server.type === 'STDIO' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
-                  }`}>
-                    {server.type}
-                  </span>
-                  <span className="ml-2 text-gray-500 text-sm">v{server.version}</span>
+                  <div className="flex items-center gap-2 mt-2 flex-wrap">
+                    <span className={`text-xs font-medium px-2 py-1 rounded inline-block ${
+                      server.type === 'STDIO' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                    }`}>
+                      {server.type}
+                    </span>
+                    <span className="text-gray-500 text-sm">v{server.version}</span>
+                    {server.isOfficial ? (
+                      <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-green-100 text-green-800">
+                        <Check className="h-3 w-3 mr-1" />
+                        Official
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800">
+                        <Tag className="h-3 w-3 mr-1" />
+                        Community
+                      </span>
+                    )}
+                  </div>
                 </DialogDescription>
               </DialogHeader>
               
@@ -76,14 +116,19 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <h3 className="font-medium text-sm text-gray-500 mb-1">Description</h3>
                 <p className="text-gray-800">{server.description}</p>
                 
-                <div className="grid grid-cols-2 gap-4 mt-6">
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
-                    <p className="text-gray-800">{server.author}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm text-gray-500 mb-1">Rating</h3>
-                    <StarRating rating={server.rating} />
+                <div className="mt-6">
+                  <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
+                  <p className="text-gray-800">{server.author}</p>
+                </div>
+                
+                <div className="mt-6">
+                  <h3 className="font-medium text-sm text-gray-500 mb-1">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {server.tags.map((tag, index) => (
+                      <Badge key={index} variant="outline" className="bg-gray-100">
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
                 

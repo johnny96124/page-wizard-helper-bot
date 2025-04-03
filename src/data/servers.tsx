@@ -11,6 +11,8 @@ export interface ServerType {
   rating: number;
   installed: boolean;
   icon: React.ReactNode;
+  isOfficial: boolean;
+  tags: string[];
 }
 
 export const servers: ServerType[] = [
@@ -19,10 +21,12 @@ export const servers: ServerType[] = [
     name: 'AWS Toolkit',
     type: 'STDIO',
     version: '2.1.0',
-    description: 'Tools for working with AWS services',
+    description: 'Tools for working with AWS services, including Lambda, EC2, S3, and more. Provides seamless integration with the AWS ecosystem.',
     author: 'AWS Community',
     rating: 4,
     installed: true,
+    isOfficial: true,
+    tags: ['Cloud', 'DevOps', 'Infrastructure'],
     icon: (
       <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-700">
@@ -36,10 +40,12 @@ export const servers: ServerType[] = [
     name: 'Docker Assistant',
     type: 'HTTP SSE',
     version: '1.5.0',
-    description: 'Helps manage Docker containers and images',
+    description: 'Helps manage Docker containers and images. Provides an intuitive interface for container management and deployment.',
     author: 'Docker Community',
     rating: 4,
     installed: false,
+    isOfficial: false,
+    tags: ['DevOps', 'Containers', 'Infrastructure'],
     icon: (
       <div className="w-8 h-8 flex items-center justify-center bg-blue-100 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-blue-700">
@@ -59,10 +65,12 @@ export const servers: ServerType[] = [
     name: 'Frontend Dev Tools',
     type: 'HTTP SSE',
     version: '3.2.1',
-    description: 'Utilities for frontend development',
+    description: 'Utilities for frontend development, including code generators, component libraries, and design tools.',
     author: 'Web Dev Team',
     rating: 4,
     installed: false,
+    isOfficial: true,
+    tags: ['Web', 'UI/UX', 'Frontend', 'Development'],
     icon: (
       <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-700">
@@ -78,10 +86,12 @@ export const servers: ServerType[] = [
     name: 'Kubernetes Helper',
     type: 'STDIO',
     version: '0.9.5',
-    description: 'Tools for working with Kubernetes clusters',
+    description: 'Tools for working with Kubernetes clusters, including deployment, scaling, and monitoring capabilities.',
     author: 'K8s Community',
     rating: 4,
     installed: false,
+    isOfficial: false,
+    tags: ['DevOps', 'Cloud', 'Infrastructure', 'Containers'],
     icon: (
       <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-700">
