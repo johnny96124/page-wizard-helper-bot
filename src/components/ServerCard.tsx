@@ -46,10 +46,11 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
             </div>
           </div>
           <div className={`p-2 rounded-full ${server.type === 'STDIO' ? 'bg-purple-50' : 'bg-blue-50'}`}>
-            {server.type === 'STDIO' ? 
-              <Settings className={`h-5 w-5 ${server.type === 'STDIO' ? 'text-purple-600' : 'text-blue-600'}`} /> : 
-              <Database className={`h-5 w-5 ${server.type === 'STDIO' ? 'text-purple-600' : 'text-blue-600'}`} />
-            }
+            {server.type === 'STDIO' ? (
+              <Settings className={`h-5 w-5 text-purple-600`} />
+            ) : (
+              <Database className={`h-5 w-5 text-blue-600`} />
+            )}
           </div>
         </div>
       </CardHeader>
