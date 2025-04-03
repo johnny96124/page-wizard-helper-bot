@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Info, Server, Check, Tag } from 'lucide-react';
+import { Info, Server, Check, Tag, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServerType } from '@/data/servers';
 import { Badge } from '@/components/ui/badge';
@@ -106,7 +106,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <h3 className="font-medium text-sm text-gray-500 mb-1">Description</h3>
                 <p className="text-gray-800">{server.description}</p>
                 
-                <div className="mt-6 flex items-start gap-6">
+                <div className="mt-6 grid grid-cols-2 gap-6">
                   <div>
                     <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
                     <p className="text-gray-800">{server.author}</p>
@@ -118,7 +118,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 </div>
                 
                 <div className="mt-6">
-                  <h3 className="font-medium text-sm text-gray-500 mb-1">Tags</h3>
+                  <h3 className="font-medium text-sm text-gray-500 mb-1">Category</h3>
                   <div className="flex flex-wrap gap-2">
                     {server.tags.map((tag, index) => (
                       <Badge key={index} variant="outline" className="bg-gray-100">
@@ -139,10 +139,18 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 </div>
                 
                 <div className="mt-6">
-                  <h3 className="font-medium text-sm text-gray-500 mb-1">Installation</h3>
-                  <div className="bg-gray-100 p-3 rounded font-mono text-sm">
-                    npm install {server.name.toLowerCase()}
-                  </div>
+                  <h3 className="font-medium text-sm text-gray-500 mb-1">Repository</h3>
+                  <a 
+                    href={`https://github.com/${server.author}/${server.name.toLowerCase()}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-blue-600 hover:text-blue-800 transition-colors"
+                  >
+                    <div className="bg-gray-100 p-3 rounded font-mono text-sm flex items-center">
+                      github.com/{server.author}/{server.name.toLowerCase()}
+                      <ExternalLink className="h-4 w-4 ml-2" />
+                    </div>
+                  </a>
                 </div>
               </div>
               
