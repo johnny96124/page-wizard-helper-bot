@@ -26,9 +26,6 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow transition-shadow duration-200 h-full flex flex-col">
       <div className="p-6 flex flex-col h-full">
         <div className="flex items-center gap-4 mb-4">
-          <div className="flex-shrink-0">
-            {server.icon}
-          </div>
           <div className="flex-1">
             <h2 className="text-xl font-bold text-gray-900">{server.name}</h2>
             <div className="flex items-center gap-2 mt-1 flex-wrap">
@@ -37,16 +34,10 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
               }`}>
                 {server.type}
               </span>
-              <span className="text-gray-500 text-sm">v{server.version}</span>
-              {server.isOfficial ? (
+              {server.isOfficial && (
                 <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-green-100 text-green-800">
                   <Check className="h-3 w-3 mr-1" />
                   Official
-                </span>
-              ) : (
-                <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800">
-                  <Tag className="h-3 w-3 mr-1" />
-                  Community
                 </span>
               )}
             </div>
@@ -56,8 +47,11 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
         <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{server.description}</p>
         
         <div className="mb-4">
-          <p className="text-gray-700 font-medium mb-2">Author</p>
-          <p className="text-gray-600">{server.author}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-gray-700 font-medium">Author</p>
+            <p className="text-gray-600">{server.author}</p>
+            <span className="text-gray-500 text-sm ml-2">Version: {server.version}</span>
+          </div>
         </div>
         
         <div className="mb-6">
@@ -85,9 +79,8 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle className="text-xl font-bold flex items-center gap-2">
-                  {server.icon}
-                  <span>{server.name}</span>
+                <DialogTitle className="text-xl font-bold">
+                  {server.name}
                 </DialogTitle>
                 <DialogDescription>
                   <div className="flex items-center gap-2 mt-2 flex-wrap">
@@ -96,16 +89,10 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                     }`}>
                       {server.type}
                     </span>
-                    <span className="text-gray-500 text-sm">v{server.version}</span>
-                    {server.isOfficial ? (
+                    {server.isOfficial && (
                       <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-green-100 text-green-800">
                         <Check className="h-3 w-3 mr-1" />
                         Official
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center rounded px-2 py-1 text-xs font-medium bg-orange-100 text-orange-800">
-                        <Tag className="h-3 w-3 mr-1" />
-                        Community
                       </span>
                     )}
                   </div>
@@ -116,9 +103,10 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <h3 className="font-medium text-sm text-gray-500 mb-1">Description</h3>
                 <p className="text-gray-800">{server.description}</p>
                 
-                <div className="mt-6">
-                  <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
+                <div className="mt-6 flex items-center gap-2">
+                  <h3 className="font-medium text-sm text-gray-500">Author</h3>
                   <p className="text-gray-800">{server.author}</p>
+                  <span className="text-gray-600 ml-2">Version: {server.version}</span>
                 </div>
                 
                 <div className="mt-6">
