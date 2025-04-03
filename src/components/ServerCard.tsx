@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Info, ServerStack } from 'lucide-react';
+import { Info, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServerType } from '@/data/servers';
 import { StarRating } from '@/components/StarRating';
@@ -55,7 +55,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
             </div>
           ) : (
             <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700">
-              <ServerStack className="h-4 w-4" />
+              <Server className="h-4 w-4" />
               <span>Add Server</span>
             </Button>
           )}

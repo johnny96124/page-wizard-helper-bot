@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, SortDesc, Info, ServerStack } from 'lucide-react';
+import { Search, SortDesc, Info, Server } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import ServerCard from '@/components/ServerCard';
