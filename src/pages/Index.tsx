@@ -70,8 +70,7 @@ const Index = () => {
               value={selectedCategory}
               onValueChange={setSelectedCategory}
             >
-              <SelectTrigger className="h-12 min-w-[200px] flex items-center gap-2 bg-white border-gray-200">
-                <Tag className="h-5 w-5 text-gray-500" />
+              <SelectTrigger className="h-12 min-w-[200px] bg-white border-gray-200 pl-3">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
               <SelectContent>
@@ -85,10 +84,7 @@ const Index = () => {
           </div>
         </div>
         
-        <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-500">
-            Showing {filteredServers.length} of {servers.length} servers
-          </div>
+        <div className="flex items-center justify-end">
           {searchTerm || selectedCategory !== 'All' ? (
             <Button 
               variant="outline" 

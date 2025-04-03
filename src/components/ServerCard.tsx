@@ -25,7 +25,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
   
   return (
     <Card className="overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 h-full flex flex-col border-gray-200">
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-1">
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-xl font-bold text-gray-900 mb-1">{server.name}</h2>
@@ -49,38 +49,36 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
         </div>
       </CardHeader>
       
-      <CardContent className="pt-2 pb-4">
-        <p className="text-gray-600 mb-4 line-clamp-2">{server.description}</p>
+      <CardContent className="pt-1 pb-3 space-y-3">
+        <p className="text-gray-600 line-clamp-2">{server.description}</p>
         
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="bg-gray-50 p-3 rounded-lg">
-            <p className="text-gray-500 text-xs mb-1">Author</p>
-            <p className="text-gray-800 font-medium truncate">{server.author}</p>
-          </div>
-          <div className="bg-gray-50 p-3 rounded-lg">
-            <p className="text-gray-500 text-xs mb-1">Version</p>
-            <p className="text-gray-800 font-medium">{server.version}</p>
-          </div>
+        {/* Categories moved between description and author info */}
+        <div className="flex flex-wrap gap-2">
+          {displayTags.map((tag, index) => (
+            <Badge key={index} variant="outline" className="bg-gray-50 border-gray-200 text-gray-700">
+              {tag}
+            </Badge>
+          ))}
+          {hasMoreTags && (
+            <Badge variant="outline" className="bg-gray-50 border-gray-200 text-gray-700">
+              +{server.tags.length - 3}
+            </Badge>
+          )}
         </div>
         
-        <div className="mb-4">
-          <p className="text-gray-500 text-xs mb-2">Categories</p>
-          <div className="flex flex-wrap gap-2">
-            {displayTags.map((tag, index) => (
-              <Badge key={index} variant="outline" className="bg-gray-50 border-gray-200 text-gray-700">
-                {tag}
-              </Badge>
-            ))}
-            {hasMoreTags && (
-              <Badge variant="outline" className="bg-gray-50 border-gray-200 text-gray-700">
-                +{server.tags.length - 3}
-              </Badge>
-            )}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-gray-50 p-2 rounded-lg">
+            <p className="text-gray-500 text-xs mb-0.5">Author</p>
+            <p className="text-gray-800 font-medium truncate">{server.author}</p>
+          </div>
+          <div className="bg-gray-50 p-2 rounded-lg">
+            <p className="text-gray-500 text-xs mb-0.5">Version</p>
+            <p className="text-gray-800 font-medium">{server.version}</p>
           </div>
         </div>
       </CardContent>
       
-      <CardFooter className="pt-2 mt-auto border-t border-gray-100">
+      <CardFooter className="pt-1 mt-auto border-t border-gray-100">
         <div className="flex items-center justify-between w-full">
           <Dialog>
             <DialogTrigger asChild>
@@ -111,12 +109,12 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
               </DialogHeader>
               
               <div className="py-4">
-                <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-5">
                   <h3 className="font-medium text-sm text-gray-500 mb-2">Description</h3>
                   <p className="text-gray-800">{server.description}</p>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-4 mb-5">
                   <div className="bg-gray-50 p-4 rounded-lg">
                     <h3 className="font-medium text-sm text-gray-500 mb-2">Author</h3>
                     <p className="text-gray-800 font-medium">{server.author}</p>
@@ -127,7 +125,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                   </div>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-5">
                   <h3 className="font-medium text-sm text-gray-500 mb-2">Category</h3>
                   <div className="flex flex-wrap gap-2">
                     {server.tags.map((tag, index) => (
@@ -138,7 +136,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                   </div>
                 </div>
                 
-                <div className="bg-gray-50 p-4 rounded-lg mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-5">
                   <h3 className="font-medium text-sm text-gray-500 mb-2">Features</h3>
                   <ul className="list-disc pl-5 text-gray-800 space-y-1">
                     <li>Supports TypeScript development</li>
