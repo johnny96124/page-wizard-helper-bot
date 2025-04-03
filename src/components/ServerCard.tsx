@@ -46,11 +46,14 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
         
         <p className="text-gray-600 mb-4 line-clamp-2 flex-grow">{server.description}</p>
         
-        <div className="mb-4">
-          <div className="flex items-center gap-2">
-            <p className="text-gray-700 font-medium">Author</p>
+        <div className="mb-4 flex items-start gap-6">
+          <div>
+            <p className="text-gray-700 font-medium text-sm mb-1">Author</p>
             <p className="text-gray-600">{server.author}</p>
-            <span className="text-gray-500 text-sm ml-2">Version: {server.version}</span>
+          </div>
+          <div>
+            <p className="text-gray-700 font-medium text-sm mb-1">Version</p>
+            <p className="text-gray-600">{server.version}</p>
           </div>
         </div>
         
@@ -103,10 +106,15 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <h3 className="font-medium text-sm text-gray-500 mb-1">Description</h3>
                 <p className="text-gray-800">{server.description}</p>
                 
-                <div className="mt-6 flex items-center gap-2">
-                  <h3 className="font-medium text-sm text-gray-500">Author</h3>
-                  <p className="text-gray-800">{server.author}</p>
-                  <span className="text-gray-600 ml-2">Version: {server.version}</span>
+                <div className="mt-6 flex items-start gap-6">
+                  <div>
+                    <h3 className="font-medium text-sm text-gray-500 mb-1">Author</h3>
+                    <p className="text-gray-800">{server.author}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-gray-500 mb-1">Version</h3>
+                    <p className="text-gray-800">{server.version}</p>
+                  </div>
                 </div>
                 
                 <div className="mt-6">
