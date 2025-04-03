@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Search, Filter, Info, Server, Category } from 'lucide-react';
+import { Search, Filter, Info, Server, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import ServerCard from '@/components/ServerCard';
@@ -70,7 +70,7 @@ const Index = () => {
             onValueChange={setSelectedCategory}
           >
             <SelectTrigger className="h-12 min-w-[200px] flex items-center gap-2">
-              <Category className="h-5 w-5 text-gray-500" />
+              <Tag className="h-5 w-5 text-gray-500" />
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
             <SelectContent>
