@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Info, Server, Check, Tag, ExternalLink, Database, Settings } from 'lucide-react';
+import { Info, Server, Check, Tag, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ServerType } from '@/data/servers';
 import { Badge } from '@/components/ui/badge';
@@ -45,13 +45,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
               )}
             </div>
           </div>
-          <div className={`p-2 rounded-full ${server.type === 'STDIO' ? 'bg-purple-50' : 'bg-blue-50'}`}>
-            {server.type === 'STDIO' ? (
-              <Settings className={`h-5 w-5 text-purple-600`} />
-            ) : (
-              <Database className={`h-5 w-5 text-blue-600`} />
-            )}
-          </div>
+          {/* 去掉了右侧小图标 */}
         </div>
       </CardHeader>
       
@@ -95,7 +89,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                 <span>Details</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="sm:max-w-[640px]">
               <DialogHeader>
                 <DialogTitle className="text-xl font-bold flex items-center gap-3">
                   {server.name}
@@ -113,9 +107,7 @@ const ServerCard: React.FC<ServerCardProps> = ({ server }) => {
                     )}
                   </div>
                 </DialogTitle>
-                <DialogDescription>
-                  Server definition for {server.name} by {server.author}
-                </DialogDescription>
+                {/* 去掉了标题下的那行字 */}
               </DialogHeader>
               
               <div className="py-4">
